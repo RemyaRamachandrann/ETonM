@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CETTestPrepApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_id">Login ID : </string>
+    <string name="password">Password : </string>
+    <string name="hint_id">Enter your login id</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="button_login">Login</string>
+    <string name="home_test">Start Test</string>
+    <string name="title_activity_display_home">Home</string>
+    <string name="title_activity_take_test">Take Test</string>
+    <string name="tab_years">Years</string>
+	<string name="tab_subject">Category</string>
+</resources>
