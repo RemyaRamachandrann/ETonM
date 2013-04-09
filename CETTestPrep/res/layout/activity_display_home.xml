@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -9,17 +10,20 @@
     tools:context=".DisplayHomeActivity" >
 
      <TextView
-        android:id="@+id/homeText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:onClick="takeTest"
-        android:text="@string/home_test"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+         android:id="@+id/homeText1"
+         style="@style/CustomText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true"
+         android:layout_marginLeft="14dp"
+         android:layout_marginTop="20dp"
+         android:autoLink="web|all"
+         android:clickable="true"
+         android:enabled="true"
+         android:onClick="takeTest"
+         android:text="@string/home_test"
+         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/homeText2"
@@ -30,7 +34,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="100dp"
         android:clickable="true"
-        android:text="@string/home_test"
+        android:text="@string/progress"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
@@ -42,7 +46,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="180dp"
         android:clickable="true"
-        android:text="@string/home_test"
+        android:text="@string/solution"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
@@ -54,7 +58,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="260dp"
         android:clickable="true"
-        android:text="@string/home_test"
+        android:text="@string/help"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
@@ -66,7 +70,29 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="340dp"
         android:clickable="true"
-        android:text="@string/home_test"
+        android:text="@string/settings"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <TextView
+         android:id="@+id/homeText6"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true"
+         android:layout_marginLeft="14dp"
+         android:layout_marginTop="420dp"
+         android:clickable="true"
+         android:text="@string/like"
+         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <Button
+         android:id="@+id/button1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/homeText1"
+         android:layout_alignBottom="@+id/homeText1"
+         android:layout_marginLeft="44dp"
+         android:layout_toRightOf="@+id/homeText1"
+         android:text="Button" />
     
 </RelativeLayout>

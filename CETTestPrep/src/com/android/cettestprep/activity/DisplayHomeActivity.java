@@ -1,6 +1,7 @@
 package com.android.cettestprep.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -23,6 +24,8 @@ public class DisplayHomeActivity extends Activity {
 	}
 	
 	public void takeTest(View f_View){
+		Intent l_Intent = new Intent(this, TakeTestActivity.class);
+		startActivity(l_Intent);
 	}
 
 }

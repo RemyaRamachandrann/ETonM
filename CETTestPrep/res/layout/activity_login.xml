@@ -9,22 +9,24 @@
     tools:context=".LoginActivity" >
 
    <TextView
-        android:id="@+id/loginlabel1"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/loginText1"
+        android:layout_alignBottom="@+id/editText1"
         android:layout_alignParentLeft="true"
+        android:layout_marginTop="26dp"
         android:layout_marginLeft="64dp"
         android:text="@string/login_id"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
-        android:id="@+id/loginText1"
+        android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/loginText1"
+        android:layout_alignLeft="@+id/editText2"
         android:layout_alignParentTop="true"
         android:layout_marginTop="26dp"
+        android:layout_marginLeft="30dp"
         android:ems="20"
         android:hint="@string/hint_id"
         android:inputType="textEmailAddress"
@@ -34,21 +36,24 @@
         android:textSize="12sp" />
 
      <TextView
-        android:id="@+id/loginlabel2"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/loginlabel1"
-        android:layout_below="@+id/loginlabel1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="26dp"
+        android:layout_marginLeft="64dp"
         android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
-        android:id="@+id/loginText2"
+        android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/loginlabel2"
-        android:layout_toRightOf="@+id/loginlabel2"
-        android:layout_marginTop="40dp"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_marginTop="26dp"
+        android:layout_marginLeft="30dp"
         android:ems="20"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
@@ -56,17 +61,17 @@
         android:maxLines="@integer/One"
         android:minLines="@integer/One"
         android:textSize="12sp" >
-
     </EditText>
 
     <Button
-        android:id="@+id/loginButton1"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginlabel2"
+        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="74dp"
-        android:text="@string/button_login" 
-        android:onClick="checkPasswd"/>
+        android:text="@string/button_login"
+        android:onClick="checkPasswd"
+         />
     
 </RelativeLayout>
