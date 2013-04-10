@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,16 +20,21 @@ public class TakeTestActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle f_SavedInstanceState) {
 		super.onCreate(f_SavedInstanceState);
-		findViewById(R.id.tab_button1).setEnabled(false);
-		findViewById(R.id.tab_button1).setClickable(false);
-		LinearLayout l_ListDisplayLayout = (LinearLayout)findViewById(R.id.layout2);
+		//m_IsFetchByYears = getIntent().getBooleanExtra("FetchByYears", true);
+		LayoutInflater l_LayoutInflater = getLayoutInflater();
+		View l_View = l_LayoutInflater.inflate(R.layout.activity_take_test,null);
+		LinearLayout l_ListDisplayLayout = (LinearLayout)(l_View.findViewById(R.id.layout2));
+		
 		l_ListDisplayLayout.removeAllViewsInLayout();
 		if (m_IsFetchByYears) {
 			createYearsList(l_ListDisplayLayout);
 		} else {
 			createSubjectsList(l_ListDisplayLayout);
 		}
-		setContentView(R.layout.activity_take_test);
+		//((RelativeLayout)l_View).invalidate();
+		l_ListDisplayLayout.bringToFront();
+		
+		setContentView(l_View);
 		// Show the Up button in the action bar.
 	}
 
@@ -40,18 +46,18 @@ public class TakeTestActivity extends Activity {
 	}
 
 	public void selectByYears(View f_View) {
-		findViewById(R.id.tab_button1).setEnabled(true);
-		findViewById(R.id.tab_button1).setClickable(true);
-		findViewById(R.id.tab_button2).setEnabled(false);
-		findViewById(R.id.tab_button2).setClickable(false);
-		m_IsFetchByYears = true;
-	}
-
-	public void selectBySubject(View f_View) {
 		findViewById(R.id.tab_button2).setEnabled(true);
 		findViewById(R.id.tab_button2).setClickable(true);
 		findViewById(R.id.tab_button1).setEnabled(false);
 		findViewById(R.id.tab_button1).setClickable(false);
+		m_IsFetchByYears = true;
+	}
+
+	public void selectBySubject(View f_View) {
+		findViewById(R.id.tab_button1).setEnabled(true);
+		findViewById(R.id.tab_button1).setClickable(true);
+		findViewById(R.id.tab_button2).setEnabled(false);
+		findViewById(R.id.tab_button2).setClickable(false);
 		m_IsFetchByYears = false;
 	}
 
@@ -68,7 +74,7 @@ public class TakeTestActivity extends Activity {
 	private void createYearsList(LinearLayout l_Layout){
 		int l_CurrentYear = Calendar.getInstance().get(Calendar.YEAR);
 		
-		for (int l_Year = l_CurrentYear - 1, l_Count = 1; l_Count <=10 ; l_Year--, l_Count++) {
+		for (int l_Year = l_CurrentYear - 1, l_Count = 0; l_Count < 10 ; l_Year--, l_Count++) {
 			TextView l_TextView = new TextView(this);
 			
 			l_TextView.setClickable(true);
@@ -80,7 +86,7 @@ public class TakeTestActivity extends Activity {
 					fetchQuestions(Integer.parseInt(l_StrYear));
 				}
 			});
-			l_TextView.setTextSize(12);
+			l_TextView.setTextSize(20);
 			l_TextView.setText(String.valueOf(l_Year));
 			l_Layout.addView(l_TextView, l_Count);
 		}
@@ -101,7 +107,7 @@ public class TakeTestActivity extends Activity {
 					
 				}
 			});
-			l_TextView.setTextSize(12);
+			l_TextView.setTextSize(20);
 			l_TextView.setText(l_Subjects[l_Count]);
 			l_Layout.addView(l_TextView, l_Count);
 			

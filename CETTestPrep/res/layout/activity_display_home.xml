@@ -27,6 +27,7 @@
 
     <TextView
         android:id="@+id/homeText2"
+        style="@style/CustomText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -85,14 +86,4 @@
          android:text="@string/like"
          android:textAppearance="?android:attr/textAppearanceLarge" />
 
-     <Button
-         android:id="@+id/button1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignBaseline="@+id/homeText1"
-         android:layout_alignBottom="@+id/homeText1"
-         android:layout_marginLeft="44dp"
-         android:layout_toRightOf="@+id/homeText1"
-         android:text="Button" />
-    
 </RelativeLayout>

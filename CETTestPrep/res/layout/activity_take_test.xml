@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
@@ -10,6 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
+        android:onClick="selectByYears"
         android:text="@string/tab_years" />
 
     <Button
@@ -19,6 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="0dp"
         android:layout_toRightOf="@+id/tab_button1"
+        android:onClick="selectBySubject"
         android:text="@string/tab_subject" />
 
     <LinearLayout
@@ -31,6 +34,7 @@
         android:clickable="false"
         android:orientation="vertical" >
 
+        <!-- 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -86,6 +90,7 @@
             android:layout_marginLeft="47dp"
             android:layout_marginTop="45dp"
             android:onClick="fetchQuestions"/>
+             -->
         
     </LinearLayout>
 
