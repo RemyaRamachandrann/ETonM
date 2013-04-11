@@ -25,7 +25,7 @@ public class DisplayHomeActivity extends Activity {
 	
 	public void takeTest(View f_View){
 		Intent l_Intent = new Intent(this, TakeTestActivity.class);
-		//l_Intent.putExtra("FetchByYears", true);
+		l_Intent.putExtra("FetchByYears", true);
 		startActivity(l_Intent);
 	}
 

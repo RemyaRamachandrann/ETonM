@@ -33,6 +33,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cettestprep.activity.DisplayHomeActivity" />
         </activity>
+        <activity
+            android:name="com.android.cettestprep.activity.DisplayQuestionsActivity"
+            android:label="@string/title_activity_display_questions" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cettestprep.activity.TakeTestActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -46,13 +46,15 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_display_home=0x7f030000;
-        public static final int activity_login=0x7f030001;
-        public static final int activity_take_test=0x7f030002;
+        public static final int activity_display_questions=0x7f030001;
+        public static final int activity_login=0x7f030002;
+        public static final int activity_take_test=0x7f030003;
     }
     public static final class menu {
         public static final int display_home=0x7f080000;
-        public static final int login=0x7f080001;
-        public static final int take_test=0x7f080002;
+        public static final int display_questions=0x7f080001;
+        public static final int login=0x7f080002;
+        public static final int take_test=0x7f080003;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -71,6 +73,7 @@ public final class R {
         public static final int tab_subject=0x7f06000b;
         public static final int tab_years=0x7f06000a;
         public static final int title_activity_display_home=0x7f060008;
+        public static final int title_activity_display_questions=0x7f060011;
         public static final int title_activity_take_test=0x7f060009;
     }
     public static final class style {

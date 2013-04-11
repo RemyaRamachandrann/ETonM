@@ -3,39 +3,46 @@ package com.android.cettestprep.activity;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.cettestprep.R;
-import com.android.cettestprep.dao.DatabaseHandler;
+import com.android.cettestprep.dao.QuestionsDatabaseHandler;
 
 public class TakeTestActivity extends Activity {
 
-	private boolean m_IsFetchByYears = true;
+	private boolean m_IsFetchByYears;
 
 	@Override
 	protected void onCreate(Bundle f_SavedInstanceState) {
 		super.onCreate(f_SavedInstanceState);
-		//m_IsFetchByYears = getIntent().getBooleanExtra("FetchByYears", true);
+		m_IsFetchByYears = getIntent().getExtras().getBoolean("FetchByYears");
 		LayoutInflater l_LayoutInflater = getLayoutInflater();
 		View l_View = l_LayoutInflater.inflate(R.layout.activity_take_test,null);
 		LinearLayout l_ListDisplayLayout = (LinearLayout)(l_View.findViewById(R.id.layout2));
-		
 		l_ListDisplayLayout.removeAllViewsInLayout();
 		if (m_IsFetchByYears) {
+			l_View.findViewById(R.id.tab_button2).setEnabled(true);
+			l_View.findViewById(R.id.tab_button2).setClickable(true);
+			l_View.findViewById(R.id.tab_button1).setEnabled(false);
+			l_View.findViewById(R.id.tab_button1).setClickable(false);
 			createYearsList(l_ListDisplayLayout);
 		} else {
+			l_View.findViewById(R.id.tab_button1).setEnabled(true);
+			l_View.findViewById(R.id.tab_button1).setClickable(true);
+			l_View.findViewById(R.id.tab_button2).setEnabled(false);
+			l_View.findViewById(R.id.tab_button2).setClickable(false);
 			createSubjectsList(l_ListDisplayLayout);
 		}
-		//((RelativeLayout)l_View).invalidate();
 		l_ListDisplayLayout.bringToFront();
 		
 		setContentView(l_View);
-		// Show the Up button in the action bar.
 	}
 
 	@Override
@@ -46,29 +53,31 @@ public class TakeTestActivity extends Activity {
 	}
 
 	public void selectByYears(View f_View) {
-		findViewById(R.id.tab_button2).setEnabled(true);
-		findViewById(R.id.tab_button2).setClickable(true);
-		findViewById(R.id.tab_button1).setEnabled(false);
-		findViewById(R.id.tab_button1).setClickable(false);
 		m_IsFetchByYears = true;
+		Intent l_Intent = new Intent(this, TakeTestActivity.class);
+		l_Intent.putExtra("FetchByYears", m_IsFetchByYears);
+		startActivity(l_Intent);
 	}
 
 	public void selectBySubject(View f_View) {
-		findViewById(R.id.tab_button1).setEnabled(true);
-		findViewById(R.id.tab_button1).setClickable(true);
-		findViewById(R.id.tab_button2).setEnabled(false);
-		findViewById(R.id.tab_button2).setClickable(false);
 		m_IsFetchByYears = false;
+		Intent l_Intent = new Intent(this, TakeTestActivity.class);
+		l_Intent.putExtra("FetchByYears", m_IsFetchByYears);
+		startActivity(l_Intent);
 	}
 
 	private void fetchQuestions(int f_Year){
-		DatabaseHandler l_DBHandler = new DatabaseHandler(this);
+		QuestionsDatabaseHandler l_DBHandler = new QuestionsDatabaseHandler(this);
 		l_DBHandler.getAllQuestionsByYear(f_Year);
+		Intent l_Intent = new Intent(this, DisplayQuestionsActivity.class);
+		startActivity(l_Intent);
 	}
 	
 	private void fetchQuestions(String f_Subject){
-		DatabaseHandler l_DBHandler = new DatabaseHandler(this);
+		QuestionsDatabaseHandler l_DBHandler = new QuestionsDatabaseHandler(this);
 		l_DBHandler.getAllQuestionsBySubject(f_Subject);
+		Intent l_Intent = new Intent(this, DisplayQuestionsActivity.class);
+		startActivity(l_Intent);
 	}
 	
 	private void createYearsList(LinearLayout l_Layout){
@@ -88,6 +97,12 @@ public class TakeTestActivity extends Activity {
 			});
 			l_TextView.setTextSize(20);
 			l_TextView.setText(String.valueOf(l_Year));
+			l_TextView.setLinksClickable(true);
+			ViewGroup.MarginLayoutParams l_MarginParams = new ViewGroup.MarginLayoutParams(300, 70);
+			l_MarginParams.setMargins(l_MarginParams.leftMargin,l_MarginParams.topMargin,l_MarginParams.rightMargin,l_MarginParams.bottomMargin);
+			l_TextView.setLayoutParams(l_MarginParams);
+			l_TextView.setTextAppearance(this, R.style.CustomText);
+			
 			l_Layout.addView(l_TextView, l_Count);
 		}
 		
@@ -109,6 +124,11 @@ public class TakeTestActivity extends Activity {
 			});
 			l_TextView.setTextSize(20);
 			l_TextView.setText(l_Subjects[l_Count]);
+			l_TextView.setLinksClickable(true);
+			ViewGroup.MarginLayoutParams l_MarginParams = new ViewGroup.MarginLayoutParams(300, 70);
+			l_MarginParams.setMargins(l_MarginParams.leftMargin,l_MarginParams.leftMargin,100,l_MarginParams.bottomMargin);
+			l_TextView.setLayoutParams(l_MarginParams);
+			l_TextView.setTextAppearance(this, R.style.CustomText);
 			l_Layout.addView(l_TextView, l_Count);
 			
 		}
