@@ -18,6 +18,8 @@
     <string name="help">Help</string>
     <string name="settings">Settings</string>
     <string name="like">Like us</string>
-    <string name="title_activity_display_questions">Exam Questions</string>
+    <string name="title_activity_display_questions">Test</string>
+    <string name="label_instructions">Instructions</string>
+    <string name="label_questions">Questions</string>
 
 </resources>

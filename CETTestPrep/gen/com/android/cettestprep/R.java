@@ -24,22 +24,33 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000f;
-        public static final int button1=0x7f09000a;
-        public static final int editText1=0x7f090007;
-        public static final int editText2=0x7f090008;
+        public static final int action_settings=0x7f09001a;
+        public static final int button1=0x7f090015;
+        public static final int editText1=0x7f090012;
+        public static final int editText2=0x7f090013;
         public static final int homeText1=0x7f090000;
         public static final int homeText2=0x7f090001;
         public static final int homeText3=0x7f090002;
         public static final int homeText4=0x7f090003;
         public static final int homeText5=0x7f090004;
         public static final int homeText6=0x7f090005;
-        public static final int layout1=0x7f09000b;
-        public static final int layout2=0x7f09000e;
-        public static final int tab_button1=0x7f09000c;
-        public static final int tab_button2=0x7f09000d;
-        public static final int textView1=0x7f090006;
-        public static final int textView2=0x7f090009;
+        public static final int label_instructions1=0x7f090007;
+        public static final int label_instructions2=0x7f090008;
+        public static final int label_question1=0x7f09000a;
+        public static final int label_question2=0x7f09000b;
+        public static final int layout1=0x7f090016;
+        public static final int layout2=0x7f090019;
+        public static final int layout_instructions=0x7f090006;
+        public static final int layout_questions=0x7f090009;
+        public static final int radio_answers=0x7f09000c;
+        public static final int radio_option1=0x7f09000d;
+        public static final int radio_option2=0x7f09000e;
+        public static final int radio_option3=0x7f09000f;
+        public static final int radio_option4=0x7f090010;
+        public static final int tab_button1=0x7f090017;
+        public static final int tab_button2=0x7f090018;
+        public static final int textView1=0x7f090011;
+        public static final int textView2=0x7f090014;
     }
     public static final class integer {
         public static final int One=0x7f050000;
@@ -64,6 +75,8 @@ public final class R {
         public static final int hint_id=0x7f060004;
         public static final int hint_password=0x7f060005;
         public static final int home_test=0x7f060007;
+        public static final int label_instructions=0x7f060012;
+        public static final int label_questions=0x7f060013;
         public static final int like=0x7f060010;
         public static final int login_id=0x7f060002;
         public static final int password=0x7f060003;
