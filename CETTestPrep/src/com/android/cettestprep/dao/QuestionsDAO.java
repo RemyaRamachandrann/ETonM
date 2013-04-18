@@ -8,7 +8,6 @@ import android.os.Parcelable;
 import android.util.SparseArray;
 
 import com.android.cettestprep.constant.Constants;
-import com.android.cettestprep.constant.SubjectsEnum;
 import com.android.cettestprep.vo.QuestionsVO;
 
 public class QuestionsDAO extends SQLiteOpenHelper {
@@ -41,9 +40,22 @@ public class QuestionsDAO extends SQLiteOpenHelper {
 	}
 
 	public SparseArray<Parcelable> getAllQuestionsBySubject(
-			SubjectsEnum f_Subject) {
+			String f_Subject, String f_Category) {
 
 		String l_TableName = "";
+		if(f_Subject == null || f_Subject.length() == 0){
+			return null;
+			
+		} else if(f_Subject.equals("Physics")){
+			l_TableName = Constants.TABLE_PHYSICS;
+		} else if(f_Subject.equals("Chemistry")){
+			l_TableName = Constants.TABLE_CHEMISTRY;
+		} else if(f_Subject.equals("Biology")){
+			l_TableName = Constants.TABLE_BIOLOGY;
+		} else if(f_Subject.equals("Mathematics")){
+			l_TableName = Constants.TABLE_MATHS;
+		}
+		/*
 		switch (f_Subject) {
 
 		case PHYSICS:
@@ -64,7 +76,9 @@ public class QuestionsDAO extends SQLiteOpenHelper {
 
 		default:
 			return null;
-		}
+		}*/
+		
+		//TODO Category shud also be a part of the criteria to fetch data
 		String l_Query = "SELECT  * FROM " + l_TableName;
 
 		return getQuestions(l_Query);

@@ -3,11 +3,13 @@
 
     <string name="app_name">Entrance Test On Mobile</string>
     <string name="action_settings">Settings</string>
-    <string name="login_id">Login ID : </string>
-    <string name="password">Password : </string>
-    <string name="hint_id">Enter your login id</string>
-    <string name="hint_password">Enter your password</string>
-    <string name="button_login">Login</string>
+    <string name="user_name">User Name : </string>
+    <string name="phone_no">Mobile No. : </string>
+    <string name="email_id">Email ID : </string>
+    <string name="hint_username">Enter your name</string>
+    <string name="hint_phone">Enter your mobile number</string>
+    <string name="prompt_mail">Mail ID</string>
+    <string name="button_register">Register</string>
     <string name="home_test">Start Test</string>
     <string name="title_activity_display_home">Home</string>
     <string name="title_activity_take_test">Take Test</string>
@@ -21,5 +23,13 @@
     <string name="title_activity_display_questions">Test</string>
     <string name="label_instructions">Instructions</string>
     <string name="label_questions">Questions</string>
+    <string name="title_activity_display_category">Categories</string>
+    <string name="button_view_instructions">View Instruction Page</string>
+    <string name="title_activity_display_instructions">Test Instructions</string>
+    <string name="new_test">New Test</string>
+    <string name="title_activity_verification">Verification Code</string>
+    <string name="label_VerificationCode">Verification Code</string>
+    <string name="hint_VerificationCode"> Code</string>
+    <string name="button_verify">Verify</string>
 
 </resources>

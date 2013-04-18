@@ -12,57 +12,73 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="26dp"
-        android:layout_marginLeft="64dp"
-        android:text="@string/login_id"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/text_userName"
+        android:text="@string/user_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/text_userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="26dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="75dp"
+        android:layout_toRightOf="@+id/textView1"
         android:ems="20"
-        android:hint="@string/hint_id"
-        android:inputType="textEmailAddress"
+        android:hint="@string/hint_username"
         android:lines="@integer/One"
+        android:inputType="textPersonName"
         android:maxLines="@integer/One"
         android:minLines="@integer/One"
         android:textSize="12sp" />
-
-     <TextView
+    
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text_mobileNo"
         android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="26dp"
-        android:layout_marginLeft="64dp"
-        android:text="@string/password"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="@string/phone_no"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/editText2"
+    
+   <EditText
+        android:id="@+id/text_mobileNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"
-        android:layout_marginTop="26dp"
-        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/text_userName"
+        android:layout_alignLeft="@+id/text_userName"
         android:ems="20"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
+        android:hint="@string/hint_phone"
+        android:inputType="phone"
         android:lines="@integer/One"
         android:maxLines="@integer/One"
         android:minLines="@integer/One"
         android:textSize="12sp" >
-    </EditText>
+    </EditText> 
+    
+   <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/spinnerMails"
+        android:layout_alignRight="@+id/textView1"
+        android:text="@string/email_id"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+   <Spinner
+        android:id="@+id/spinnerMails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_below="@+id/text_mobileNo"
+        android:layout_alignLeft="@+id/text_mobileNo"
+        android:prompt="@string/prompt_mail"
+        android:textSize="12sp" >
+    </Spinner>
+    
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
@@ -70,8 +86,8 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="74dp"
-        android:text="@string/button_login"
-        android:onClick="checkPasswd"
+        android:text="@string/button_register"
+        android:onClick="registerUser"
          />
     
 </RelativeLayout>

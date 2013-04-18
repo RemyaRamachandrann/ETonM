@@ -9,21 +9,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DisplayHomeActivity" >
 
-     <TextView
-         android:id="@+id/homeText1"
-         style="@style/CustomText"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_alignParentTop="true"
-         android:layout_marginLeft="14dp"
-         android:layout_marginTop="20dp"
-         android:autoLink="web|all"
-         android:clickable="true"
-         android:enabled="true"
-         android:onClick="takeTest"
-         android:text="@string/home_test"
-         android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TextView
+        android:id="@+id/homeText1"
+        style="@style/CustomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="20dp"
+        android:autoLink="web|all"
+        android:clickable="true"
+        android:enabled="true"
+        android:onClick="takeTest"
+        android:text="@string/home_test"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <View
+        android:id="@+id/separator1"
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/homeText1"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/homeText2"
@@ -38,6 +48,17 @@
         android:text="@string/progress"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
+    <View
+        android:id="@+id/separator2"
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/homeText2"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible" />
+    
+
     <TextView
         android:id="@+id/homeText3"
         android:layout_width="wrap_content"
@@ -50,6 +71,16 @@
         android:text="@string/solution"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
+    <View
+        android:id="@+id/separator3"
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/homeText3"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible" />
+
     <TextView
         android:id="@+id/homeText4"
         android:layout_width="wrap_content"
@@ -62,6 +93,16 @@
         android:text="@string/help"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
+    <View
+        android:id="@+id/separator4"
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/homeText4"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible" />
+
     <TextView
         android:id="@+id/homeText5"
         android:layout_width="wrap_content"
@@ -74,16 +115,26 @@
         android:text="@string/settings"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
-     <TextView
-         android:id="@+id/homeText6"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_alignParentTop="true"
-         android:layout_marginLeft="14dp"
-         android:layout_marginTop="420dp"
-         android:clickable="true"
-         android:text="@string/like"
-         android:textAppearance="?android:attr/textAppearanceLarge" />
+    <View
+        android:id="@+id/separator5"
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/homeText5"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/homeText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="420dp"
+        android:clickable="true"
+        android:text="@string/like"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

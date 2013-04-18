@@ -3,63 +3,63 @@ package com.android.cettestprep.vo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class QuestionsVO implements Parcelable{
-	 public static final Parcelable.Creator<QuestionsVO> CREATOR
-     = new Parcelable.Creator<QuestionsVO>() {
- public QuestionsVO createFromParcel(Parcel in) {
-     return new QuestionsVO(in);
- }
+public class QuestionsVO implements Parcelable {
+	public static final Parcelable.Creator<QuestionsVO> CREATOR = new Parcelable.Creator<QuestionsVO>() {
+		public QuestionsVO createFromParcel(Parcel in) {
+			return new QuestionsVO(in);
+		}
 
- public QuestionsVO[] newArray(int size) {
-     return new QuestionsVO[size];
- }
-};
-	
-	int m_Id = 0;
-	
-	String m_Year = "";
-	
-	String m_ExamID = "";
-	
-	String m_Question = "";
-	
-	String m_Option1 = "";
-			
-	String m_Option2 = "";
-	
-	String m_Option3 = "";
-	
-	String m_Option4 = "";
-	
-	char m_Answer;
-	
-	char m_Result;
-	
-	public QuestionsVO(int f_Id, String f_ExamId, String f_Year, String f_Question,
-			String f_Option1, String f_Option2, String f_Option3, String f_Option4, char f_Answer){
+		public QuestionsVO[] newArray(int size) {
+			return new QuestionsVO[size];
+		}
+	};
+
+	private int m_Id = 0;
+
+	private String m_Year = "";
+
+	private String m_ExamID = "";
+
+	private String m_Question = "";
+
+	private String m_Option1 = "";
+
+	private String m_Option2 = "";
+
+	private String m_Option3 = "";
+
+	private String m_Option4 = "";
+
+	private char m_Answer;
+
+	private char m_Result;
+
+	public QuestionsVO(int f_Id, String f_ExamId, String f_Year,
+			String f_Question, String f_Option1, String f_Option2,
+			String f_Option3, String f_Option4, char f_Answer) {
 		m_Id = f_Id;
-        m_ExamID = f_ExamId;
-        m_Year = f_Year;
-        m_Question = f_Question;
-        m_Option1 = f_Option1;
-        m_Option2 = f_Option2;
-        m_Option3 = f_Option3;
-        m_Option4 = f_Option4;
-        m_Answer = f_Answer;
-   }
-	
+		m_ExamID = f_ExamId;
+		m_Year = f_Year;
+		m_Question = f_Question;
+		m_Option1 = f_Option1;
+		m_Option2 = f_Option2;
+		m_Option3 = f_Option3;
+		m_Option4 = f_Option4;
+		m_Answer = f_Answer;
+	}
+
 	private QuestionsVO(Parcel f_Parcel) {
-        m_Id = f_Parcel.readInt();
-        m_ExamID = f_Parcel.readString();
-        m_Year = f_Parcel.readString();
-        m_Question = f_Parcel.readString();
-        m_Option1 = f_Parcel.readString();
-        m_Option2 = f_Parcel.readString();
-        m_Option3 = f_Parcel.readString();
-        m_Option4 = f_Parcel.readString();
-        m_Answer = f_Parcel.readString().charAt(0);
-        
-    }
+		m_Id = f_Parcel.readInt();
+		m_ExamID = f_Parcel.readString();
+		m_Year = f_Parcel.readString();
+		m_Question = f_Parcel.readString();
+		m_Option1 = f_Parcel.readString();
+		m_Option2 = f_Parcel.readString();
+		m_Option3 = f_Parcel.readString();
+		m_Option4 = f_Parcel.readString();
+		m_Answer = f_Parcel.readString().charAt(0);
+
+	}
 
 	public int getId() {
 		return m_Id;
@@ -132,7 +132,7 @@ public class QuestionsVO implements Parcelable{
 	public void setAnswer(char f_answer) {
 		m_Answer = f_answer;
 	}
-	
+
 	public char getResult() {
 		return m_Result;
 	}
@@ -140,7 +140,7 @@ public class QuestionsVO implements Parcelable{
 	public void setResult(char f_Result) {
 		m_Result = f_Result;
 	}
-	
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -156,8 +156,7 @@ public class QuestionsVO implements Parcelable{
 		f_Parcel.writeString(m_Option2);
 		f_Parcel.writeString(m_Option3);
 		f_Parcel.writeString(m_Option4);
-		f_Parcel.writeString(m_Answer+"");
-		
-		
+		f_Parcel.writeString(m_Answer + "");
+
 	}
 }

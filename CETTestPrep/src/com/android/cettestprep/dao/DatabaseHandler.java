@@ -6,11 +6,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.android.cettestprep.constant.Constants;
 
@@ -25,6 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public DatabaseHandler(Context context) {
 		super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
 		m_DBPath = context.getDatabasePath(Constants.DATABASE_NAME).getAbsolutePath();
+		
 		this.myContext = context;
 	}
 	
@@ -44,7 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     		} catch (IOException e) {
     			//Kill Exception
         	}
-        	openDataBase();
+        	//openDataBase();
     	}
  
     }
@@ -53,28 +54,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * Check if the database already exist to avoid re-copying the file each time you open the application.
      * @return true if it exists, false if it doesn't
      */
-    private boolean checkDataBase(){
+    public boolean checkDataBase(){
  
-    	SQLiteDatabase checkDB = null;
- 
+    	SQLiteDatabase l_DB = null;
+        boolean l_Exists = false;
     	try{
-    		checkDB = SQLiteDatabase.openDatabase(m_DBPath, null, SQLiteDatabase.OPEN_READONLY);
-    		String l_TableName = SQLiteDatabase.findEditTable(Constants.TABLE_PHYSICS);
-    		Log.d("Table Name : ",l_TableName);
+    		l_DB = SQLiteDatabase.openDatabase(m_DBPath, null, SQLiteDatabase.OPEN_READONLY);
+    		/*String l_TableName = SQLiteDatabase.findEditTable(Constants.TABLE_PHYSICS);
+    		Log.d("Table Name : ",l_TableName);*/
     	}catch(SQLiteException e){
     		//database does't exist yet.
+    		return false;
+    	} finally{
+    		if(l_DB != null){
+        		l_DB.close();
+        		l_Exists = true;
+        	}
     	}
- 
-    	if(checkDB != null){
-    		checkDB.close();
-    	}
-    	return checkDB != null ? true : false;
+    	
+    	return l_Exists;
+    	
     }
  
     public void openDataBase(){
     	try {
     	//Open the database
     	myDataBase = SQLiteDatabase.openDatabase(m_DBPath, null, SQLiteDatabase.OPEN_READONLY);
+    	myDataBase.close();
      	}catch(SQLException sqle){
      
      	}
@@ -100,6 +106,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
  
     	//Open your local db as the input stream
     	InputStream myInput = myContext.getAssets().open(Constants.DATABASE_NAME);
+		AssetFileDescriptor l_AFD =  myContext.getAssets().openFd(Constants.DATABASE_NAME);
  
     	// Path to the just created empty db
     	String outFileName = m_DBPath;

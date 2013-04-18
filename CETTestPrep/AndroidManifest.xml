@@ -40,6 +40,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cettestprep.activity.TakeTestActivity" />
         </activity>
+        <activity
+            android:name="com.android.cettestprep.activity.DisplayCategoryActivity"
+            android:label="@string/title_activity_display_category" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cettestprep.activity.TakeTestActivity" />
+        </activity>
+        <activity
+            android:name="com.android.cettestprep.activity.DisplayInstructionsActivity"
+            android:label="@string/title_activity_display_instructions" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cettestprep.activity.TakeTestActivity" />
+        </activity>
+        <activity
+            android:name="com.android.cettestprep.activity.VerificationActivity"
+            android:label="@string/title_activity_verification" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cettestprep.activity.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>
