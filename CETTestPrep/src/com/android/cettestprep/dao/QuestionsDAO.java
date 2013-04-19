@@ -27,7 +27,6 @@ public class QuestionsDAO extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase f_DB, int f_OldVersion,
 			int f_NewVersion) {
 		f_DB.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_PHYSICS);
-
 	}
 
 	public SparseArray<Parcelable> getAllQuestionsByYear(String f_Year) {
@@ -90,27 +89,28 @@ public class QuestionsDAO extends SQLiteOpenHelper {
 		// Map<Integer,QuestionsVO> l_QuestionsMap = new HashMap<Integer,
 		// QuestionsVO>();
 		SQLiteDatabase l_Database = this.getWritableDatabase();
-		Cursor cursor = l_Database.rawQuery(f_Query, null);
+		Cursor l_Cursor = l_Database.rawQuery(f_Query, null);
 
 		// looping through all rows and adding to list
-		if (cursor.moveToFirst()) {
+		if (l_Cursor.moveToFirst()) {
 			do {
 				QuestionsVO l_QuestionVO = new QuestionsVO(
-						Integer.parseInt(cursor.getString(0)),
-						cursor.getString(1), cursor.getString(2),
-						cursor.getString(3), cursor.getString(4),
-						cursor.getString(5), cursor.getString(6),
-						cursor.getString(7),
-						cursor.getString(8).toCharArray()[0]);
+						Integer.parseInt(l_Cursor.getString(0)),
+						l_Cursor.getString(1), l_Cursor.getString(2),
+						l_Cursor.getString(3), l_Cursor.getString(4),
+						l_Cursor.getString(5), l_Cursor.getString(6),
+						l_Cursor.getString(7),
+						l_Cursor.getString(8));
 
 				// l_QuestionsMap.put(Integer.valueOf(l_QuestionVO.getId()),
 				// l_QuestionVO);*/
 
 				l_QuestionsArray.put(Integer.valueOf(l_QuestionVO.getId()),
 						l_QuestionVO);
-			} while (cursor.moveToNext());
+			} while (l_Cursor.moveToNext());
 		}
-
+		l_Cursor.close();
+		l_Database.close();
 		return l_QuestionsArray;
 
 	}

@@ -40,6 +40,11 @@ public final class Constants {
 	
 	public static final String MESSAGE_MAIL_ID = "Email ID : ";
 	
+	public static final String BUTTON_SUBMIT ="Submit";
 	
-
+	public static final String BUTTON_NEXT ="Next";
+	
+	public static final int SCORE_RIGHT_ANSWER = 4;
+	
+	public static final int SCORE_WRONG_ANSWER = 1;
 }

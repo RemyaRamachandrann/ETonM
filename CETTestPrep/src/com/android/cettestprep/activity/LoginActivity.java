@@ -7,6 +7,7 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -139,6 +140,7 @@ public class LoginActivity extends Activity {
 			String l_Date = l_DateFormat.format(l_Calender.getTime());
 
 			String l_VerificationCode = String.valueOf(RandomValueGenerator.generateRandomNumber(1000, 9999));
+			Log.d("VerificationCode", l_VerificationCode);
 			UserDetailsVO l_UserDetails = new UserDetailsVO("UID001",
 					l_UserName, l_PhoneNo, l_EmailId, l_PhoneNo,
 					l_Date,String.valueOf(System.currentTimeMillis()), l_VerificationCode, false);

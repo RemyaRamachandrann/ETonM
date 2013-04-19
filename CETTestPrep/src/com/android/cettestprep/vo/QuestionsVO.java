@@ -30,13 +30,13 @@ public class QuestionsVO implements Parcelable {
 
 	private String m_Option4 = "";
 
-	private char m_Answer;
+	private String m_Answer = "";
 
 	private char m_Result;
 
 	public QuestionsVO(int f_Id, String f_ExamId, String f_Year,
 			String f_Question, String f_Option1, String f_Option2,
-			String f_Option3, String f_Option4, char f_Answer) {
+			String f_Option3, String f_Option4, String f_Answer) {
 		m_Id = f_Id;
 		m_ExamID = f_ExamId;
 		m_Year = f_Year;
@@ -57,7 +57,7 @@ public class QuestionsVO implements Parcelable {
 		m_Option2 = f_Parcel.readString();
 		m_Option3 = f_Parcel.readString();
 		m_Option4 = f_Parcel.readString();
-		m_Answer = f_Parcel.readString().charAt(0);
+		m_Answer = f_Parcel.readString();
 
 	}
 
@@ -125,12 +125,12 @@ public class QuestionsVO implements Parcelable {
 		m_Option4 = f_Option4;
 	}
 
-	public char getAnswer() {
+	public String getAnswer() {
 		return m_Answer;
 	}
 
-	public void setAnswer(char f_answer) {
-		m_Answer = f_answer;
+	public void setAnswer(String f_Answer) {
+		m_Answer = f_Answer;
 	}
 
 	public char getResult() {
@@ -156,7 +156,7 @@ public class QuestionsVO implements Parcelable {
 		f_Parcel.writeString(m_Option2);
 		f_Parcel.writeString(m_Option3);
 		f_Parcel.writeString(m_Option4);
-		f_Parcel.writeString(m_Answer + "");
+		f_Parcel.writeString(m_Answer);
 
 	}
 }

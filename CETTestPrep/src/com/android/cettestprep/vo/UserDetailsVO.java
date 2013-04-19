@@ -1,7 +1,5 @@
 package com.android.cettestprep.vo;
 
-import java.sql.Date;
-import java.sql.Time;
 
 public class UserDetailsVO {
 

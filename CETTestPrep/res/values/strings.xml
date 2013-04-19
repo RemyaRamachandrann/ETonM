@@ -14,7 +14,7 @@
     <string name="title_activity_display_home">Home</string>
     <string name="title_activity_take_test">Take Test</string>
     <string name="tab_years">Years</string>
-    <string name="tab_subject">Category</string>
+    <string name="tab_subject">Subjects</string>
     <string name="progress">Progress Report</string>
     <string name="solution">Solutions</string>
     <string name="help">Help</string>
@@ -31,5 +31,16 @@
     <string name="label_VerificationCode">Verification Code</string>
     <string name="hint_VerificationCode"> Code</string>
     <string name="button_verify">Verify</string>
+    <string name="button_previous">Previous</string>
+    <string name="button_next">Next</string>
+    <string name="title_activity_display_score">Score</string>
+    <string name="label_subject">Subject : </string>
+    <string name="label_totalQuestions">Total Questions : </string>
+    <string name="label_correct">Correct Answers : </string>
+    <string name="label_incorrect">Incorrect Answers : </string>
+    <string name="label_unanswered">Unanswered Questions : </string>
+    <string name="label_currentScore">Current Score : </string>
+    <string name="label_averageScore">Average Score : </string>
+    <string name="label_percentile">Percentile : </string>
 
 </resources>

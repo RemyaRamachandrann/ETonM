@@ -61,6 +61,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cettestprep.activity.LoginActivity" />
         </activity>
+        <activity
+            android:name="com.android.cettestprep.activity.DisplayScoreActivity"
+            android:label="@string/title_activity_display_score" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cettestprep.activity.DisplayQuestionsActivity" />
+        </activity>
     </application>
 
 </manifest>

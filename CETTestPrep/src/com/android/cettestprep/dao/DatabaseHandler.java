@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -106,8 +105,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
  
     	//Open your local db as the input stream
     	InputStream myInput = myContext.getAssets().open(Constants.DATABASE_NAME);
-		AssetFileDescriptor l_AFD =  myContext.getAssets().openFd(Constants.DATABASE_NAME);
- 
     	// Path to the just created empty db
     	String outFileName = m_DBPath;
  

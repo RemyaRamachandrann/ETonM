@@ -57,7 +57,10 @@ public class DisplayInstructionsActivity extends Activity {
 			f_Bundle.putSerializable("UnansweredSet", new HashSet<Integer>());
 			l_Intent.putExtra("QuestionBundle", f_Bundle);
 			l_Intent.putExtra("QuestionIndex", 0);
+			l_Intent.putExtra("StartTimer", true);
 		}
 		startActivity(l_Intent);
 	}
+	
+	
 }

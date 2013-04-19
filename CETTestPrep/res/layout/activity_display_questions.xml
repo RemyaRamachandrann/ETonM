@@ -37,7 +37,6 @@
         android:id="@+id/layout_questions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/layout_instructions"
         android:layout_marginLeft="16dp"
@@ -82,6 +81,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RadioGroup>
+    </LinearLayout>
+    
+
+
+    <LinearLayout
+        android:id="@+id/layout_navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/layout_questions" >
+        
+   <Button
+        android:id="@+id/buttonPrev"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:onClick="displayQuestion"
+        android:text="@string/button_previous" />
+    
+     <TextView
+            android:id="@+id/label_questionNo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:onClick="displayQuestion"
+        android:visibility="visible"
+        android:text="@string/button_next" />
+    
     </LinearLayout>
 
 </RelativeLayout>

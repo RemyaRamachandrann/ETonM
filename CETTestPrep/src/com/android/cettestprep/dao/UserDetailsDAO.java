@@ -40,7 +40,11 @@ public class UserDetailsDAO extends SQLiteOpenHelper {
 		if (!l_Cursor.moveToFirst()) {
 			return "";
 		}
-		return l_Cursor.getString(0);
+		String l_FieldValue = l_Cursor.getString(0);
+		l_Cursor.close();
+		l_Database.close();
+		
+		return l_FieldValue;
 	}
 
 	public UserDetailsVO getVerificationDetails() {
@@ -59,6 +63,8 @@ public class UserDetailsDAO extends SQLiteOpenHelper {
 		l_UserDetailsVO.setMobileNo(l_Cursor.getString(0));
 		l_UserDetailsVO.setEmailID(l_Cursor.getString(1));
 		l_UserDetailsVO.setVerificationCode(l_Cursor.getString(2));
+		l_Cursor.close();
+		l_Database.close();
 		return l_UserDetailsVO;
 	}
 
@@ -80,16 +86,15 @@ public class UserDetailsDAO extends SQLiteOpenHelper {
 		l_DB.insert(Constants.TABLE_USER, null, values);
 		l_DB.close(); // Closing database connection
 	}
-	
-	
-		public int updateConfirmation() {
-			SQLiteDatabase l_DB = this.getWritableDatabase();
 
-			ContentValues l_Values = new ContentValues();
-			l_Values.put(Constants.KEY_CONFIRM, "true");
-
-			// updating row
-			return l_DB.update(Constants.TABLE_USER, l_Values, null, null);
-		}
+	public int updateConfirmation() {
+		SQLiteDatabase l_DB = this.getWritableDatabase();
+		ContentValues l_Values = new ContentValues();
+		l_Values.put(Constants.KEY_CONFIRM, "true");
+		int l_ConfirmResult = l_DB.update(Constants.TABLE_USER, l_Values, null,
+				null);
+		l_DB.close();
+		return l_ConfirmResult;
+	}
 
 }
