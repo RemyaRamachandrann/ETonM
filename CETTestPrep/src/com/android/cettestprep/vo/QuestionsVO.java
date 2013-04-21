@@ -32,7 +32,7 @@ public class QuestionsVO implements Parcelable {
 
 	private String m_Answer = "";
 
-	private char m_Result;
+	private String m_Result = "";
 
 	public QuestionsVO(int f_Id, String f_ExamId, String f_Year,
 			String f_Question, String f_Option1, String f_Option2,
@@ -58,6 +58,7 @@ public class QuestionsVO implements Parcelable {
 		m_Option3 = f_Parcel.readString();
 		m_Option4 = f_Parcel.readString();
 		m_Answer = f_Parcel.readString();
+		m_Result = f_Parcel.readString();
 
 	}
 
@@ -133,11 +134,11 @@ public class QuestionsVO implements Parcelable {
 		m_Answer = f_Answer;
 	}
 
-	public char getResult() {
+	public String getResult() {
 		return m_Result;
 	}
 
-	public void setResult(char f_Result) {
+	public void setResult(String f_Result) {
 		m_Result = f_Result;
 	}
 
@@ -157,6 +158,7 @@ public class QuestionsVO implements Parcelable {
 		f_Parcel.writeString(m_Option3);
 		f_Parcel.writeString(m_Option4);
 		f_Parcel.writeString(m_Answer);
+		f_Parcel.writeString(m_Result);
 
 	}
 }

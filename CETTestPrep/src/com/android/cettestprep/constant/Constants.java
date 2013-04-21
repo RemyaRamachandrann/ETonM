@@ -1,6 +1,8 @@
 package com.android.cettestprep.constant;
 
 public final class Constants {
+	
+	/* Database Details */
 
 	public static final String DATABASE_NAME = "EntranceTestDB";
 
@@ -15,6 +17,9 @@ public final class Constants {
 	public static final String TABLE_BIOLOGY = "BiologyQuestions";
 
 	public static final String TABLE_USER = "UserDetails";
+	
+	
+	/* User Table Fields */
 
 	public static final String KEY_USERID = "UserID";
 
@@ -34,17 +39,59 @@ public final class Constants {
 
 	public static final String KEY_CONFIRM = "Confirmed";
 	
-	public static final String MESSAGE_VERIFICATION_CONTENT = "A verification code has been sent to your email id and phone. \n\r Please input the code and verify for completing the registration process.\r\n";
+	
+	/* Verfication message details */
+	
+	public static final String MESSAGE_VERIFICATION_CONTENT = "A verification code has been sent to your email id and phone. \n Please input the code and verify for completing the registration process.\r\n";
 	
 	public static final String MESSAGE_MOBILE_NUM = "Mobile Number : ";
 	
 	public static final String MESSAGE_MAIL_ID = "Email ID : ";
 	
+	/* Error Messages for Display */
+	
+	public static final String ERROR_MANDATORY_USER = "User Name is Mandatory. Please input the same.";
+	
+	public static final String ERROR_MANDATORY_MOBILE = "Mobile Number is Mandatory. Please input the same.";
+			
+	public static final String ERROR_MANDATORY_MAIL	= "Email ID is Mandatory. Please input the same.";
+	
+	public static final String ERROR_INVALID_MOBILE_NUMBER = "Mobile Number is not valid. Please input a valid mobile number.";
+	
+	public static final String ERROR_MANDATORY_VERIFICATION_CODE = "Please input the Verification code sent to your eMail and Phone";
+
+	
+	/* Button Names */
+	
 	public static final String BUTTON_SUBMIT ="Submit";
 	
 	public static final String BUTTON_NEXT ="Next";
 	
+	
+	/* Score Values for calculation*/
+	
 	public static final int SCORE_RIGHT_ANSWER = 4;
 	
 	public static final int SCORE_WRONG_ANSWER = 1;
+	
+	/* Intent Keys */
+	
+	public static final String INTENT_KEY_ERROR = "Error";
+			
+	public static final String INTENT_KEY_USER_NAME ="User";
+	
+	public static final String INTENT_KEY_PHONE_NUMBER = "Phone";
+	
+	public static final String INTENT_KEY_EMAIL_ID ="Email";
+	
+	public static final String INTENT_KEY_EMAIL_INDEX ="MailIndex";
+	
+	public static final String INTENT_KEY_VERIFICATION_CODE ="VCode";
+	
+	
+	/* Miscellaneous*/
+	
+	public static final String ACCOUNT_TYPE ="com.google";
+	
+	
 }

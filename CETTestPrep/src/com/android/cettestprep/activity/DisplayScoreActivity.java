@@ -40,8 +40,6 @@ public class DisplayScoreActivity extends Activity {
 		TextView l_ScoreTxt = ((TextView)(l_View.findViewById(R.id.label_currentScore)));
 		l_ScoreTxt.setText(l_ScoreTxt.getText() + String.valueOf(l_CurrentScore));
 		
-		//TODO Find average...update in DB and display
-		
 		l_View.bringToFront();
 		setContentView(l_View);
 	}
