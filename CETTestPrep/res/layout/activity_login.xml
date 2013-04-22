@@ -90,13 +90,4 @@
         android:onClick="registerUser"
          />
     
-     <TextView 
-        android:id="@+id/textError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:text=""
-        android:textColor="@color/errorColor"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    
 </RelativeLayout>

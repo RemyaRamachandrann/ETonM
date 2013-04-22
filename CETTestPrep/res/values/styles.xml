@@ -23,6 +23,4 @@
         <item name="android:autoLink">all</item>
         <item name="android:allowSingleTap">true</item>
     </style>
-    
-    <color name="errorColor">#f00</color>
 </resources>

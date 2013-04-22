@@ -52,7 +52,6 @@ public class DisplayQuestionsActivity extends Activity {
 			String l_OptionC = l_QuestionsVO.getOption3();
 			String l_OptionD = l_QuestionsVO.getOption4();
 			m_CorrectAnswer = l_QuestionsVO.getAnswer();
-			
 
 			View l_View = getLayoutInflater().inflate(
 					R.layout.activity_display_questions, null);
@@ -68,22 +67,6 @@ public class DisplayQuestionsActivity extends Activity {
 					.setText(l_OptionC);
 			((RadioButton) l_QuestionLayout.findViewById(R.id.radio_option4))
 					.setText(l_OptionD);
-			
-			String l_SelectedAnswer = l_QuestionsVO.getResult();
-			if(l_SelectedAnswer.length() != 0){
-				RadioGroup l_RadioGrp = ((RadioGroup) l_QuestionLayout.findViewById(R.id.radio_answers));
-				if(l_SelectedAnswer.equals(l_OptionA)){
-					l_RadioGrp.check(R.id.radio_option1);
-				} else if(l_SelectedAnswer.equals(l_OptionB)){
-					l_RadioGrp.check(R.id.radio_option2);
-				} else if(l_SelectedAnswer.equals(l_OptionC)){
-					l_RadioGrp.check(R.id.radio_option3);
-				} else if(l_SelectedAnswer.equals(l_OptionD)){
-					l_RadioGrp.check(R.id.radio_option4);
-					//((RadioButton) l_QuestionLayout.findViewById(R.id.radio_option3)).setSelected(true);
-				} 
-			}
-				
 			l_QuestionLayout.bringToFront();
 
 			LinearLayout l_NavigationLayout = (LinearLayout) (l_View
@@ -182,11 +165,6 @@ public class DisplayQuestionsActivity extends Activity {
 
 		if (l_SelectedAnswer.length() != 0) {
 			Bundle l_Bundle = getIntent().getBundleExtra("QuestionBundle");
-			SparseArray<Parcelable> l_QuestionsArr = l_Bundle
-					.getSparseParcelableArray("Questions");
-			QuestionsVO l_QuestionsVO = (QuestionsVO) l_QuestionsArr
-					.get(l_QuestionsArr.keyAt(m_QuestionIndex));
-			l_QuestionsVO.setResult(l_SelectedAnswer);
 			if (m_CorrectAnswer.equals(l_SelectedAnswer)) {
 				addIndexToSet(m_QuestionIndex,
 						((HashSet<Integer>) l_Bundle.get("CorrectSet")));
