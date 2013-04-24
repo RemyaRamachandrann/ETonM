@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.cettestprep.R;
+import com.android.cettestprep.constant.Constants;
 import com.android.cettestprep.constant.SubjectsEnum;
 
 public class TakeTestActivity extends Activity {
@@ -22,7 +23,7 @@ public class TakeTestActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle f_SavedInstanceState) {
 		super.onCreate(f_SavedInstanceState);
-		m_IsFetchByYears = getIntent().getExtras().getBoolean("FetchByYears");
+		m_IsFetchByYears = getIntent().getExtras().getBoolean(Constants.INTENT_KEY_FETCH_BY_YEARS);
 		LayoutInflater l_LayoutInflater = getLayoutInflater();
 		View l_View = l_LayoutInflater.inflate(R.layout.activity_take_test,
 				null);
@@ -63,20 +64,20 @@ public class TakeTestActivity extends Activity {
 	public void selectBySubject(View f_View) {
 		m_IsFetchByYears = false;
 		Intent l_Intent = new Intent(this, TakeTestActivity.class);
-		l_Intent.putExtra("FetchByYears", m_IsFetchByYears);
+		l_Intent.putExtra(Constants.INTENT_KEY_FETCH_BY_YEARS, m_IsFetchByYears);
 		startActivity(l_Intent);
 	}
 
 	private void fetchQuestions(String f_Value, boolean f_IsFetchByYear) {
 		if(f_IsFetchByYear){
 			Intent l_Intent = new Intent(this, DisplayInstructionsActivity.class);
-			l_Intent.putExtra("FetchByYears", f_IsFetchByYear);
+			l_Intent.putExtra(Constants.INTENT_KEY_FETCH_BY_YEARS, f_IsFetchByYear);
 			l_Intent.putExtra("Year", f_Value);
 			startActivity(l_Intent);
 
 		} else {
 			Intent l_Intent = new Intent(this, DisplayCategoryActivity.class);
-			l_Intent.putExtra("Subject", f_Value);
+			l_Intent.putExtra(Constants.INTENT_KEY_SUBJECT_NAME, f_Value);
 			startActivity(l_Intent);
 		}
 		

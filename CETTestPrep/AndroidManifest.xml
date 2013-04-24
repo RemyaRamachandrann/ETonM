@@ -7,6 +7,11 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    
+    <uses-permission 
+       	android:name="android.permission.GET_ACCOUNTS"/>
+    <user-permission
+        android:name="android.permission.SEND_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -15,26 +20,31 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.android.cettestprep.activity.LoginActivity"
-            android:label="@string/app_name" >
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.android.cettestprep.activity.DisplayHomeActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_display_home" >
         </activity>
         <activity
             android:name="com.android.cettestprep.activity.TakeTestActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
+            android:icon="@drawable/arrow_left"
             android:label="@string/title_activity_take_test" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.cettestprep.activity.DisplayHomeActivity" />
         </activity>
         <activity
             android:name="com.android.cettestprep.activity.DisplayQuestionsActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_display_questions" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -42,6 +52,8 @@
         </activity>
         <activity
             android:name="com.android.cettestprep.activity.DisplayCategoryActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_display_category" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -49,6 +61,8 @@
         </activity>
         <activity
             android:name="com.android.cettestprep.activity.DisplayInstructionsActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_display_instructions" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -56,6 +70,8 @@
         </activity>
         <activity
             android:name="com.android.cettestprep.activity.VerificationActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_verification" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -63,6 +79,8 @@
         </activity>
         <activity
             android:name="com.android.cettestprep.activity.DisplayScoreActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_display_score" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

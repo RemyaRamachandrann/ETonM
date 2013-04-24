@@ -14,6 +14,8 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+       <!--  <item name="android:background">@color/appBackgroundColor</item> -->
+            
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
@@ -23,4 +25,12 @@
         <item name="android:autoLink">all</item>
         <item name="android:allowSingleTap">true</item>
     </style>
+    
+    <style name="TitlebarBackgroundStyle">
+        <item name="android:background">@drawable/arrow_left</item>
+    </style>
+    
+    
+    <color name="errorColor">#f00</color>
+    <!-- color name="appBackgroundColor">#CFDBFF</color -->
 </resources>

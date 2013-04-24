@@ -3,16 +3,22 @@ package com.android.cettestprep.activity;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.cettestprep.R;
 import com.android.cettestprep.constant.Constants;
@@ -42,21 +48,39 @@ public class LoginActivity extends Activity {
 			l_MailIDDropDown.setAdapter(l_SpinnerAdapter);
 
 			// TODO...The below code should be uncommented for real device
-			/*
-			 * Pattern l_EmailPattern = Patterns.EMAIL_ADDRESS; Account[]
-			 * l_UserAccounts = AccountManager.get(this).getAccounts(); //
-			 * Account l_account = new Account(name, type) for (Account
-			 * l_Account : l_UserAccounts) { if
-			 * (l_EmailPattern.matcher(l_Account.name).matches()) { if
-			 * (l_Account.type.equals("com.google")) {
-			 * l_SpinnerAdapter.add(l_Account.name);
-			 * l_SpinnerAdapter.notifyDataSetChanged(); } } }
-			 */
+
+			Pattern l_EmailPattern = Patterns.EMAIL_ADDRESS;
+			Account[] l_UserAccounts = AccountManager.get(this).getAccounts(); //
+			for (Account l_Account : l_UserAccounts) {
+				if (l_EmailPattern.matcher(l_Account.name).matches()) {
+					if (l_Account.type.equals(Constants.ACCOUNT_TYPE)) {
+						l_SpinnerAdapter.add(l_Account.name);
+						l_SpinnerAdapter.notifyDataSetChanged();
+					}
+				}
+			}
 
 			l_SpinnerAdapter.add("remyaram1000@gmail.com");
 			l_SpinnerAdapter.add("remya.ramchandran@gmail.com");
 			l_SpinnerAdapter.notifyDataSetChanged();
 
+			Intent l_Intent = getIntent();
+			String l_Error = l_Intent
+					.getStringExtra(Constants.INTENT_KEY_ERROR);
+			if (l_Error != null && l_Error.length() > 0) {
+				TextView l_MessageTxt = ((TextView) l_View
+						.findViewById(R.id.textError));
+				l_MessageTxt.setLines(10);
+				l_MessageTxt.setText(l_Error);
+				l_MessageTxt.bringToFront();
+				((EditText) l_View.findViewById(R.id.text_userName)).setText(l_Intent
+						.getStringExtra(Constants.INTENT_KEY_USER_NAME));
+				((EditText) l_View.findViewById(R.id.text_mobileNo)).setText(l_Intent.getStringExtra(Constants.INTENT_KEY_PHONE_NUMBER));
+				long l_EmailIndex = l_Intent.getLongExtra(Constants.INTENT_KEY_EMAIL_INDEX, 0);
+					final Spinner l_SpinnerMailID = (Spinner) l_View.findViewById(R.id.spinnerMails);
+					l_SpinnerMailID.setSelection((int)l_EmailIndex);
+					
+			}
 			/*
 			 * TelephonyManager tMgr
 			 * =(TelephonyManager)this.getSystemService(Context
@@ -68,12 +92,14 @@ public class LoginActivity extends Activity {
 			Boolean l_Confirmation = Boolean.parseBoolean(l_UserDetails
 					.getOneField(Constants.KEY_CONFIRM));
 			if (!l_Confirmation) {
-				UserDetailsVO l_UserDetailsVO = l_UserDetails.getVerificationDetails();
+				UserDetailsVO l_UserDetailsVO = l_UserDetails
+						.getVerificationDetails();
 				Intent l_Intent = new Intent(this, VerificationActivity.class);
-				if(l_UserDetailsVO != null){
-					l_Intent.putExtra("PhoneNo", l_UserDetailsVO.getMobileNo());
-					l_Intent.putExtra("EmailID", l_UserDetailsVO.getEmailID());
-					l_Intent.putExtra("VCode", l_UserDetailsVO.getVerificationCode());
+				if (l_UserDetailsVO != null) {
+					l_Intent.putExtra(Constants.INTENT_KEY_PHONE_NUMBER, l_UserDetailsVO.getMobileNo());
+					l_Intent.putExtra(Constants.INTENT_KEY_EMAIL_ID, l_UserDetailsVO.getEmailID());
+					l_Intent.putExtra(Constants.INTENT_KEY_VERIFICATION_CODE,
+							l_UserDetailsVO.getVerificationCode());
 				}
 				startActivity(l_Intent);
 			} else {
@@ -93,39 +119,26 @@ public class LoginActivity extends Activity {
 
 	public void registerUser(View f_View) {
 
-		Intent l_Intent = new Intent(this, VerificationActivity.class);
 		String l_UserName = ((EditText) findViewById(R.id.text_userName))
 				.getText().toString();
 		String l_PhoneNo = ((EditText) findViewById(R.id.text_mobileNo))
 				.getText().toString();
-		final Spinner l_SubjectSpinner = (Spinner) findViewById(R.id.spinnerMails);
-		Object l_EmailIdSpinner = l_SubjectSpinner.getSelectedItem();
-		String l_EmailId = "";
-		if (l_EmailIdSpinner != null) {
-			l_EmailId = l_EmailIdSpinner.toString();
-		}
+		final Spinner l_SpinnerMailID = (Spinner) findViewById(R.id.spinnerMails);
 
-		if (l_UserName == null || l_UserName.equals("")) {
-			l_Intent.putExtra("Error",
-					"User Name is Mandatory. Please input the same");
-			startActivity(l_Intent);
-		}
-		if (l_PhoneNo == null || l_PhoneNo.equals("")) {
-			l_Intent.putExtra("Error",
-					"Mobile Number is Mandatory. Please input the same");
-			startActivity(l_Intent);
-		}
-
-		if (l_EmailId == null || l_EmailId.equals("")) {
-			l_Intent.putExtra("Error",
-					"Mobile Number is Mandatory. Please input the same");
-			startActivity(l_Intent);
+		if (isMandatoryCheckFail(l_UserName, l_PhoneNo, l_SpinnerMailID)) {
+			return;
 		}
 
 		if (!MobileNumberValidator.isValidMobileNumber(l_PhoneNo)) {
-			l_Intent.putExtra("Error",
-					"Mobile Number is not valid. Please input a valid mobile number");
+			Intent l_Intent = new Intent(this, LoginActivity.class);
+			l_Intent.putExtra(Constants.INTENT_KEY_ERROR,
+					Constants.ERROR_INVALID_MOBILE_NUMBER);
+			l_Intent.putExtra(Constants.INTENT_KEY_USER_NAME, l_UserName);
+			l_Intent.putExtra(Constants.INTENT_KEY_PHONE_NUMBER, l_PhoneNo);
+			l_Intent.putExtra(Constants.INTENT_KEY_EMAIL_INDEX,
+					l_SpinnerMailID.getSelectedItemId());
 			startActivity(l_Intent);
+			return;
 		} else {
 			DatabaseHandler f_DBHandler = new DatabaseHandler(this);
 			try {
@@ -139,19 +152,69 @@ public class LoginActivity extends Activity {
 			Calendar l_Calender = Calendar.getInstance();
 			String l_Date = l_DateFormat.format(l_Calender.getTime());
 
-			String l_VerificationCode = String.valueOf(RandomValueGenerator.generateRandomNumber(1000, 9999));
+			String l_VerificationCode = String.valueOf(RandomValueGenerator
+					.generateRandomNumber(1000, 9999));
 			Log.d("VerificationCode", l_VerificationCode);
+			
+		/*	 SmsManager l_SmsManager = SmsManager.getDefault();
+			 l_SmsManager.sendTextMessage(l_PhoneNo, null, "Code : " +
+			 l_VerificationCode, null, null);*/
+			
+
+			String l_EmailID = l_SpinnerMailID.getSelectedItem().toString();
 			UserDetailsVO l_UserDetails = new UserDetailsVO("UID001",
-					l_UserName, l_PhoneNo, l_EmailId, l_PhoneNo,
-					l_Date,String.valueOf(System.currentTimeMillis()), l_VerificationCode, false);
+					l_UserName, l_PhoneNo, l_EmailID, l_PhoneNo, l_Date,
+					String.valueOf(System.currentTimeMillis()),
+					l_VerificationCode, false);
 			UserDetailsDAO l_UserDetailsDAO = new UserDetailsDAO(this);
 			l_UserDetailsDAO.addUser(l_UserDetails);
-			
-			l_Intent.putExtra("PhoneNo", l_PhoneNo);
-			l_Intent.putExtra("EmailID", l_EmailId);
-			l_Intent.putExtra("VCode", l_VerificationCode);
+
+			Intent l_Intent = new Intent(this, VerificationActivity.class);
+			l_Intent.putExtra(Constants.INTENT_KEY_PHONE_NUMBER, l_PhoneNo);
+			l_Intent.putExtra(Constants.INTENT_KEY_EMAIL_ID, l_EmailID);
+			l_Intent.putExtra(Constants.INTENT_KEY_VERIFICATION_CODE,
+					l_VerificationCode);
 			startActivity(l_Intent);
 		}
+	}
+
+	private boolean isMandatoryCheckFail(String f_UserName, String f_PhoneNo,
+			Spinner f_SpinnerEmail) {
+
+		String l_Error = "";
+		Intent l_Intent = new Intent(this, LoginActivity.class);
+		if (f_UserName == null || f_UserName.length() == 0) {
+			l_Error = Constants.ERROR_MANDATORY_USER + "\n";
+		}
+		l_Intent.putExtra(Constants.INTENT_KEY_USER_NAME, f_UserName);
+
+		if (f_PhoneNo == null || f_PhoneNo.equals("")) {
+			l_Error = l_Error + Constants.ERROR_MANDATORY_MOBILE + "\n";
+
+		}
+		l_Intent.putExtra(Constants.INTENT_KEY_PHONE_NUMBER, f_PhoneNo);
+
+		String l_EmailId = "";
+		if (f_SpinnerEmail != null) {
+			Object l_EmailIdSpinner = f_SpinnerEmail.getSelectedItem();
+			if (l_EmailIdSpinner != null) {
+				l_EmailId = l_EmailIdSpinner.toString();
+			}
+		}
+		if (l_EmailId.length() == 0) {
+			l_Error = l_Error + Constants.ERROR_MANDATORY_MAIL;
+
+		} else {
+			l_Intent.putExtra(Constants.INTENT_KEY_EMAIL_INDEX,
+					String.valueOf(f_SpinnerEmail.getSelectedItemId()));
+		}
+
+		if (l_Error.length() != 0) {
+			l_Intent.putExtra(Constants.INTENT_KEY_ERROR, l_Error);
+			startActivity(l_Intent);
+			return true;
+		}
+		return false;
 	}
 
 }

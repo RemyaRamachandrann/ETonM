@@ -17,11 +17,12 @@ public class VerificationActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		String l_Error = getIntent().getStringExtra("Error");
+		String l_Error = getIntent().getStringExtra(Constants.INTENT_KEY_ERROR);
 
 		if (l_Error == null || l_Error.equals("")) {
-			String l_PhoneNo = getIntent().getStringExtra("PhoneNo");
-			String l_MailID = getIntent().getStringExtra("EmailID");
+			String l_PhoneNo = getIntent().getStringExtra(Constants.INTENT_KEY_PHONE_NUMBER);
+			String l_MailID = getIntent().getStringExtra(Constants.INTENT_KEY_EMAIL_ID);
+			
 			View l_View = getLayoutInflater().inflate(
 					R.layout.activity_verification, null);
 			String l_Message = Constants.MESSAGE_VERIFICATION_CONTENT + "\n"
@@ -55,7 +56,7 @@ public class VerificationActivity extends Activity {
 	}
 
 	public void verifyCode(View f_View) {
-		String l_VerifyCode = getIntent().getStringExtra("VCode");
+		String l_VerifyCode = getIntent().getStringExtra(Constants.INTENT_KEY_VERIFICATION_CODE);
 		Object l_VCode = ((EditText) findViewById(R.id.edit_VCode)).getText();
 		if (l_VCode != null && l_VCode.toString().length() != 0) {
 			if (l_VerifyCode.equals(l_VCode.toString())) {
@@ -65,21 +66,16 @@ public class VerificationActivity extends Activity {
 					Intent l_Intent = new Intent(this,
 							DisplayHomeActivity.class);
 					startActivity(l_Intent);
-				} else {
-					Intent l_Intent = new Intent(this, VerificationActivity.class);
-					l_Intent.putExtra("Error",
-							"Please input the Verification code sent to your eMail and Phone");
-					startActivity(l_Intent);
-				}
-
+					return;
+				} 
 			}
 
-		} else {
-			Intent l_Intent = new Intent(this, VerificationActivity.class);
-			l_Intent.putExtra("Error",
-					"Please input the Verification code sent to your eMail and Phone");
-			startActivity(l_Intent);
-		}
+		} 
+		Intent l_Intent = new Intent(this, VerificationActivity.class);
+		l_Intent.putExtra(Constants.INTENT_KEY_ERROR, Constants.ERROR_MANDATORY_VERIFICATION_CODE);
+		l_Intent.putExtra(Constants.INTENT_KEY_VERIFICATION_CODE
+				, l_VerifyCode);
+		startActivity(l_Intent);
 
 	}
 

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.android.cettestprep.R;
+import com.android.cettestprep.constant.Constants;
 
 public class DisplayHomeActivity extends Activity {
 
@@ -25,7 +26,7 @@ public class DisplayHomeActivity extends Activity {
 	
 	public void takeTest(View f_View){
 		Intent l_Intent = new Intent(this, TakeTestActivity.class);
-		l_Intent.putExtra("FetchByYears", true);
+		l_Intent.putExtra(Constants.INTENT_KEY_FETCH_BY_YEARS, true);
 		startActivity(l_Intent);
 	}
 

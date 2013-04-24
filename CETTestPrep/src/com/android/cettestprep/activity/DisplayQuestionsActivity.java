@@ -31,18 +31,18 @@ public class DisplayQuestionsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		String l_Error = getIntent().getStringExtra("Error");
+		String l_Error = getIntent().getStringExtra(Constants.INTENT_KEY_ERROR);
 		if (l_Error != null) {
 			TextView textView = new TextView(this);
 			textView.setTextSize(12);
 			textView.setText(l_Error);
 			setContentView(textView);
 		} else {
-			Bundle l_Bundle = getIntent().getBundleExtra("QuestionBundle");
+			Bundle l_Bundle = getIntent().getBundleExtra(Constants.INTENT_KEY_QUESTION_BUNDLE);
 			SparseArray<Parcelable> l_QuestionsArr = l_Bundle
-					.getSparseParcelableArray("Questions");
+					.getSparseParcelableArray(Constants.BUNDLE_KEY_QUESTIONS);
 			
-			m_QuestionIndex = getIntent().getIntExtra("QuestionIndex", 0);
+			m_QuestionIndex = getIntent().getIntExtra(Constants.INTENT_KEY_QUESTION_INDEX, 0);
 			
 			QuestionsVO l_QuestionsVO = (QuestionsVO) l_QuestionsArr
 					.get(l_QuestionsArr.keyAt(m_QuestionIndex));
@@ -52,6 +52,7 @@ public class DisplayQuestionsActivity extends Activity {
 			String l_OptionC = l_QuestionsVO.getOption3();
 			String l_OptionD = l_QuestionsVO.getOption4();
 			m_CorrectAnswer = l_QuestionsVO.getAnswer();
+			
 
 			View l_View = getLayoutInflater().inflate(
 					R.layout.activity_display_questions, null);
@@ -67,6 +68,22 @@ public class DisplayQuestionsActivity extends Activity {
 					.setText(l_OptionC);
 			((RadioButton) l_QuestionLayout.findViewById(R.id.radio_option4))
 					.setText(l_OptionD);
+			
+			String l_SelectedAnswer = l_QuestionsVO.getResult();
+			if(l_SelectedAnswer.length() != 0){
+				RadioGroup l_RadioGrp = ((RadioGroup) l_QuestionLayout.findViewById(R.id.radio_answers));
+				if(l_SelectedAnswer.equals(l_OptionA)){
+					l_RadioGrp.check(R.id.radio_option1);
+				} else if(l_SelectedAnswer.equals(l_OptionB)){
+					l_RadioGrp.check(R.id.radio_option2);
+				} else if(l_SelectedAnswer.equals(l_OptionC)){
+					l_RadioGrp.check(R.id.radio_option3);
+				} else if(l_SelectedAnswer.equals(l_OptionD)){
+					l_RadioGrp.check(R.id.radio_option4);
+					//((RadioButton) l_QuestionLayout.findViewById(R.id.radio_option3)).setSelected(true);
+				} 
+			}
+				
 			l_QuestionLayout.bringToFront();
 
 			LinearLayout l_NavigationLayout = (LinearLayout) (l_View
@@ -75,7 +92,7 @@ public class DisplayQuestionsActivity extends Activity {
 			int l_QuestionCount = l_QuestionsArr.size();
 			if(getIntent().getBooleanExtra("displayUnanswered", false)){
 				l_QuestionCount = ((HashSet<Integer>) l_Bundle
-						.get("UnansweredSet")).size();
+						.get(Constants.BUNDLE_KEY_UNANSWERED_QUESTIONS)).size();
 			} 
 			if (m_QuestionIndex == 0) {
 				((Button) l_NavigationLayout.findViewById(R.id.buttonPrev))
@@ -138,9 +155,9 @@ public class DisplayQuestionsActivity extends Activity {
 		l_Intent.putExtra("QuestionBundle",
 				getIntent().getBundleExtra("QuestionBundle"));
 		if (f_View.getId() == R.id.buttonNext) {
-			l_Intent.putExtra("QuestionIndex", m_QuestionIndex + 1);
+			l_Intent.putExtra(Constants.INTENT_KEY_QUESTION_INDEX, m_QuestionIndex + 1);
 		} else {
-			l_Intent.putExtra("QuestionIndex", m_QuestionIndex - 1);
+			l_Intent.putExtra(Constants.INTENT_KEY_QUESTION_INDEX, m_QuestionIndex - 1);
 		}
 
 		startActivity(l_Intent);
@@ -153,9 +170,9 @@ public class DisplayQuestionsActivity extends Activity {
 		int l_RadioID = l_RadioGrp.getCheckedRadioButtonId();
 		if (l_RadioID == -1) {
 			// no item selected
-			Bundle l_Bundle = getIntent().getBundleExtra("QuestionBundle");
+			Bundle l_Bundle = getIntent().getBundleExtra(Constants.INTENT_KEY_QUESTION_BUNDLE);
 			addIndexToSet(m_QuestionIndex,
-					((HashSet<Integer>) l_Bundle.get("UnansweredSet")));
+					((HashSet<Integer>) l_Bundle.get(Constants.BUNDLE_KEY_UNANSWERED_QUESTIONS)));
 		} else {
 			RadioButton l_SelectedRadio = (RadioButton) (l_RadioGrp
 					.findViewById(l_RadioID));
@@ -164,21 +181,26 @@ public class DisplayQuestionsActivity extends Activity {
 		}
 
 		if (l_SelectedAnswer.length() != 0) {
-			Bundle l_Bundle = getIntent().getBundleExtra("QuestionBundle");
+			Bundle l_Bundle = getIntent().getBundleExtra(Constants.INTENT_KEY_QUESTION_BUNDLE);
+			SparseArray<Parcelable> l_QuestionsArr = l_Bundle
+					.getSparseParcelableArray("Questions");
+			QuestionsVO l_QuestionsVO = (QuestionsVO) l_QuestionsArr
+					.get(l_QuestionsArr.keyAt(m_QuestionIndex));
+			l_QuestionsVO.setResult(l_SelectedAnswer);
 			if (m_CorrectAnswer.equals(l_SelectedAnswer)) {
 				addIndexToSet(m_QuestionIndex,
-						((HashSet<Integer>) l_Bundle.get("CorrectSet")));
+						((HashSet<Integer>) l_Bundle.get(Constants.BUNDLE_KEY_CORRECT_QUESTIONS)));
 				deleteIndexFromSet(m_QuestionIndex,
-						((HashSet<Integer>) l_Bundle.get("IncorrectSet")));
+						((HashSet<Integer>) l_Bundle.get(Constants.BUNDLE_KEY_INCORRECT_QUESTIONS)));
 			} else {
 				addIndexToSet(m_QuestionIndex,
-						((HashSet<Integer>) l_Bundle.get("IncorrectSet")));
+						((HashSet<Integer>) l_Bundle.get(Constants.BUNDLE_KEY_INCORRECT_QUESTIONS)));
 				deleteIndexFromSet(m_QuestionIndex,
-						((HashSet<Integer>) l_Bundle.get("CorrectSet")));
+						((HashSet<Integer>) l_Bundle.get(Constants.BUNDLE_KEY_CORRECT_QUESTIONS)));
 
 			}
 			deleteIndexFromSet(m_QuestionIndex,
-					((HashSet<Integer>) l_Bundle.get("UnansweredSet")));
+					((HashSet<Integer>) l_Bundle.get(Constants.BUNDLE_KEY_UNANSWERED_QUESTIONS)));
 		}
 	}
 	private void addIndexToSet(int f_Index, Set<Integer> f_Set) {
@@ -252,21 +274,21 @@ public class DisplayQuestionsActivity extends Activity {
 	}
 
 	private void displayResult() {
-		Bundle l_Bundle = getIntent().getBundleExtra("QuestionBundle");
+		Bundle l_Bundle = getIntent().getBundleExtra(Constants.INTENT_KEY_QUESTION_BUNDLE);
 		@SuppressWarnings("unchecked")
 		int l_CountRight = ((HashSet<Integer>) l_Bundle
-				.get("CorrectSet")).size();
+				.get(Constants.BUNDLE_KEY_CORRECT_QUESTIONS)).size();
 		@SuppressWarnings("unchecked")
 		int l_CountWrong = ((HashSet<Integer>) l_Bundle
-				.get("IncorrectSet")).size();
+				.get(Constants.BUNDLE_KEY_INCORRECT_QUESTIONS)).size();
 		@SuppressWarnings("unchecked")
 		int l_CountUnanswered = ((HashSet<Integer>) l_Bundle
-				.get("UnansweredSet")).size();
+				.get(Constants.BUNDLE_KEY_UNANSWERED_QUESTIONS)).size();
 		Intent l_Intent = new Intent(this, DisplayScoreActivity.class);
 		l_Intent.putExtra("Subject", "TBD");
 		l_Intent.putExtra("Right", l_CountRight);
 		l_Intent.putExtra("Wrong", l_CountWrong);
-		l_Intent.putExtra("Unanswered", l_CountUnanswered);
+		l_Intent.putExtra(Constants.BUNDLE_KEY_UNANSWERED_QUESTIONS, l_CountUnanswered);
 		startActivity(l_Intent);
 	}
 	

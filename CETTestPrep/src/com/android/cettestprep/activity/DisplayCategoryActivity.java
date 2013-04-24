@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.android.cettestprep.R;
+import com.android.cettestprep.constant.Constants;
 
 public class DisplayCategoryActivity extends Activity {
 
@@ -26,12 +27,12 @@ public class DisplayCategoryActivity extends Activity {
 
 
 	public void viewInstructions(View f_View){
-		String l_SubjectName = getIntent().getStringExtra("Subject");
+		String l_SubjectName = getIntent().getStringExtra(Constants.INTENT_KEY_SUBJECT_NAME);
 		String l_CategoryName = "";
 		Intent l_Intent = new Intent(this, DisplayInstructionsActivity.class);
-		l_Intent.putExtra("FetchByYears", false);
-		l_Intent.putExtra("Subject", l_SubjectName);
-		l_Intent.putExtra("Category", l_CategoryName);
+		l_Intent.putExtra(Constants.INTENT_KEY_FETCH_BY_YEARS, false);
+		l_Intent.putExtra(Constants.INTENT_KEY_SUBJECT_NAME, l_SubjectName);
+		l_Intent.putExtra(Constants.INTENT_KEY_CATEGORY_NAME, l_CategoryName);
 		startActivity(l_Intent);
 		
 	}
